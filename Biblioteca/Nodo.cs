@@ -22,5 +22,13 @@ namespace Biblioteca
             Derecha = null;
             Izquierda = null;
         }
+        public Nodo<T> getIzquierda()
+        {
+            return Izquierda;
+        }
+        public Nodo<T> getDerecha()
+        {
+            return Derecha;
+        }
     }
 }

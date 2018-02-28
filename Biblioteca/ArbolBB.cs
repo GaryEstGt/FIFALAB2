@@ -139,5 +139,55 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
             }
         }
+        
+public bool removeNodo(Nodo<T> nodo)
+        {
+
+            /* Creamos variables para saber si tiene hijos izquierdo y derecho */
+            bool tieneNodoDerecha = nodo.getDerecha() != null ? true : false;
+            bool tieneNodoIzquierda = nodo.getIzquierda() != null ? true : false;
+
+            /* Verificamos los 3 casos diferentes y llamamos a la función correspondiente */
+
+            /* Caso 1: No tiene hijos */
+            if (!tieneNodoDerecha && !tieneNodoIzquierda)
+            {
+                return removeNodoCaso1(nodo);
+            }
+
+            /* Caso 2: Tiene un hijo y el otro no */
+            if (tieneNodoDerecha && !tieneNodoIzquierda)
+            {
+                return removeNodoCaso2(nodo);
+            }
+
+            /* Caso 2: Tiene un hijo y el otro no */
+            if (!tieneNodoDerecha && tieneNodoIzquierda)
+            {
+                return removeNodoCaso2(nodo);
+            }
+
+            /* Caso 3: Tiene ambos hijos */
+            if (tieneNodoDerecha && tieneNodoIzquierda)
+            {
+                return removeNodoCaso3(nodo);
+            }
+
+            return false;
+        }
+        
+
+private bool removeNodoCaso1(Nodo<T> nodo)
+        {
+            return false;
+        }
+        private bool removeNodoCaso2(Nodo<T> nodo)
+        {
+            return false;
+        }
+        private bool removeNodoCaso3(Nodo<T> nodo)
+        {
+            return false;
+        }
     }
 }
