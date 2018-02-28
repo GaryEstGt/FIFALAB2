@@ -179,6 +179,7 @@ public bool removeNodo(Nodo<T> nodo)
 
 private bool removeNodoCaso1(Nodo<T> nodo)
         {
+          
             return false;
         }
         private bool removeNodoCaso2(Nodo<T> nodo)
