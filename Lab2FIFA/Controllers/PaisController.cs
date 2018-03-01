@@ -1,6 +1,8 @@
 ﻿using Lab2FIFA.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,7 +26,7 @@ namespace Lab2FIFA.Controllers
                 switch (submitButton)
                 {
                     case "Texto":
-                        Data<Texto>.instance.tipoDato = 0;
+                        Data<Texto>.instance.tipoDato = 2;
                         retorno = "IndexTexto";
                         break;
                     case "Entero":
@@ -32,7 +34,7 @@ namespace Lab2FIFA.Controllers
                         retorno = "IndexEntero";
                         break;
                     case "Pais":
-                        Data<Pais>.instance.tipoDato = 2;
+                        Data<Pais>.instance.tipoDato = 0;
                         break;
                 }
                 return RedirectToAction(retorno);
@@ -133,6 +135,70 @@ namespace Lab2FIFA.Controllers
             {
                 // TODO: Add delete logic here
 
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        public ActionResult CrearPorArchivo()
+        {
+            return View();
+        }
+
+        // POST: Jugador/Create
+        [HttpPost]
+        public ActionResult CrearPorArchivo(HttpPostedFileBase postedFile)
+        {
+            try
+            {
+                string filePath = string.Empty;
+                if (postedFile != null)
+                {
+                    string path = Server.MapPath("~/Uploads/");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    filePath = path + Path.GetFileName(postedFile.FileName);
+                    string extension = Path.GetExtension(postedFile.FileName);
+                    postedFile.SaveAs(filePath);
+
+                    int contLinea = 0;
+                    string csvData = System.IO.File.ReadAllText(filePath);
+                    foreach (string row in csvData.Split('\n'))
+                    {
+                        if (contLinea != 0)
+                        {
+                            if (Data<Pais>.instance.tipoDato == 0)
+                            {
+                                if (!string.IsNullOrEmpty(row))
+                                {
+                                    Pais pais = JsonConvert.DeserializeObject<Pais>(row);
+                                    Data<Pais>.instance.Arbol.Insertar(pais, Pais.CompareByName);
+                                }
+                            }
+                            else if (Data<Entero>.instance.tipoDato == 1)
+                            {
+                                if (!string.IsNullOrEmpty(row))
+                                {
+                                    Entero entero = JsonConvert.DeserializeObject<Entero>(row);
+                                    Data<Entero>.instance.Arbol.Insertar(entero, Entero.CompareByValor);
+                                }
+                            }
+                            else
+                            {
+                                if (!string.IsNullOrEmpty(row))
+                                {
+                                    Texto texto = JsonConvert.DeserializeObject<Texto>(row);
+                                    Data<Texto>.instance.Arbol.Insertar(texto, Texto.CompareByText);
+                                }
+                            }
+                        }
+                        contLinea++;
+                    }
+                }
                 return RedirectToAction("Index");
             }
             catch

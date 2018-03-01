@@ -22,7 +22,7 @@ namespace Lab2FIFA
             set { Instance = value; }
         }
 
-        Biblioteca.ArbolBB<T> Arbol = new Biblioteca.ArbolBB<T>();
+        public Biblioteca.ArbolBB<T> Arbol = new Biblioteca.ArbolBB<T>();
         public int tipoDato;
     }
 }
