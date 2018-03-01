@@ -8,6 +8,7 @@ namespace Biblioteca
 {
     public class Nodo<T>
     {
+        public Nodo<T> Padre;
         public T info { get; set; }
         public Nodo<T> siguiente { get; set; }
         public Nodo<T> anterior { get; set; }
@@ -21,6 +22,7 @@ namespace Biblioteca
             anterior = null;
             Derecha = null;
             Izquierda = null;
+            Padre = null;
         }
         public Nodo<T> getIzquierda()
         {
@@ -29,6 +31,10 @@ namespace Biblioteca
         public Nodo<T> getDerecha()
         {
             return Derecha;
+        }
+        public Nodo<T> getPadre()
+        {
+            return Padre;
         }
     }
 }

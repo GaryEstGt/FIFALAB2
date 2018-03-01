@@ -47,21 +47,23 @@ namespace Biblioteca
 
                 if (derecha)
                 {
-                    Padre.Derecha = nuevo;
+                    Padre.Derecha = nuevo;                   
                 }
                 else
                 {
                     Padre.Izquierda = nuevo;
-                }                                
+                }
+
+                nuevo.Padre = Padre;                                
             }
         }
 
-        public Nodo<T> findWhere(Func<T, bool> delegado, T datos, Nodo<T> raiz)
+        public Nodo<T> findWhere(Delegate delegado, T datos, Nodo<T> raiz)
         {
             if (raiz != null)
             {
                 findWhere(delegado, datos, raiz.Izquierda);
-                if (delegado.Invoke(raiz.info))
+                if ((int)delegado.DynamicInvoke(raiz.info, datos) == 0)
                 {
                     return raiz;
                 }                
@@ -140,28 +142,25 @@ namespace Biblioteca
             }
         }
         
-public bool removeNodo(Nodo<T> nodo)
+public bool removeNodo(T dato, Delegate delegado)
         {
-
+            Nodo<T> nodo = findWhere(delegado, dato, Raiz);
             /* Creamos variables para saber si tiene hijos izquierdo y derecho */
             bool tieneNodoDerecha = nodo.getDerecha() != null ? true : false;
             bool tieneNodoIzquierda = nodo.getIzquierda() != null ? true : false;
 
-            /* Verificamos los 3 casos diferentes y llamamos a la función correspondiente */
-
-            /* Caso 1: No tiene hijos */
             if (!tieneNodoDerecha && !tieneNodoIzquierda)
             {
                 return removeNodoCaso1(nodo);
             }
 
-            /* Caso 2: Tiene un hijo y el otro no */
+      
             if (tieneNodoDerecha && !tieneNodoIzquierda)
             {
                 return removeNodoCaso2(nodo);
             }
 
-            /* Caso 2: Tiene un hijo y el otro no */
+  
             if (!tieneNodoDerecha && tieneNodoIzquierda)
             {
                 return removeNodoCaso2(nodo);
@@ -179,7 +178,7 @@ public bool removeNodo(Nodo<T> nodo)
 
 private bool removeNodoCaso1(Nodo<T> nodo)
         {
-          
+            
             return false;
         }
         private bool removeNodoCaso2(Nodo<T> nodo)

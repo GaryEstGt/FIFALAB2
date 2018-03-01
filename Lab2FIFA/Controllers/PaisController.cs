@@ -24,15 +24,15 @@ namespace Lab2FIFA.Controllers
                 switch (submitButton)
                 {
                     case "Texto":
-                        Data<int>.instance.tipoDato = 0;
+                        Data<Texto>.instance.tipoDato = 0;
                         retorno = "IndexTexto";
                         break;
                     case "Entero":
-                        Data<int>.instance.tipoDato = 1;
+                        Data<Entero>.instance.tipoDato = 1;
                         retorno = "IndexEntero";
                         break;
                     case "Pais":
-                        Data<int>.instance.tipoDato = 2;
+                        Data<Pais>.instance.tipoDato = 2;
                         break;
                 }
                 return RedirectToAction(retorno);
