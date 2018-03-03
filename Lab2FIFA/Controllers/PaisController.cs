@@ -153,6 +153,7 @@ namespace Lab2FIFA.Controllers
         {
             try
             {
+                string todoeltexto="";
                 string filePath = string.Empty;
                 if (postedFile != null)
                 {
@@ -171,33 +172,31 @@ namespace Lab2FIFA.Controllers
                     {
                         if (contLinea != 0)
                         {
-                            if (Data<Pais>.instance.tipoDato == 0)
-                            {
+                           
                                 if (!string.IsNullOrEmpty(row))
                                 {
-                                    Pais pais = JsonConvert.DeserializeObject<Pais>(row);
-                                    Data<Pais>.instance.Arbol.Insertar(pais, Pais.CompareByName);
+                                    todoeltexto +=row;
                                 }
-                            }
-                            else if (Data<Entero>.instance.tipoDato == 1)
-                            {
-                                if (!string.IsNullOrEmpty(row))
-                                {
-                                    Entero entero = JsonConvert.DeserializeObject<Entero>(row);
-                                    Data<Entero>.instance.Arbol.Insertar(entero, Entero.CompareByValor);
-                                }
-                            }
-                            else
-                            {
-                                if (!string.IsNullOrEmpty(row))
-                                {
-                                    Texto texto = JsonConvert.DeserializeObject<Texto>(row);
-                                    Data<Texto>.instance.Arbol.Insertar(texto, Texto.CompareByText);
-                                }
-                            }
+                            
                         }
                         contLinea++;
                     }
+                    if(Data<Pais>.instance.tipoDato == 0)
+                    {
+                        Pais pais = JsonConvert.DeserializeObject<Pais>(todoeltexto);
+                        Data<Pais>.instance.Arbol.Insertar(pais, Pais.CompareByName);
+                    }
+                    else if (Data<Entero>.instance.tipoDato == 1)
+                    {
+                        Entero entero = JsonConvert.DeserializeObject<Entero>(todoeltexto);
+                        Data<Entero>.instance.Arbol.Insertar(entero, Entero.CompareByValor);
+                    }
+                    else
+                    {
+                        Texto texto = JsonConvert.DeserializeObject<Texto>(todoeltexto);
+                        Data<Texto>.instance.Arbol.Insertar(texto, Texto.CompareByText);
+                    }
+                   
                 }
                 return RedirectToAction("Index");
             }
