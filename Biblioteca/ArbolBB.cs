@@ -176,31 +176,55 @@ public void removeNodo(T dato, Delegate delegado)
 
         private void removeNodoCaso1(Nodo<T> nodo)
         {
-            if (nodo.Padre.Derecha == nodo)            
-                nodo.Padre.Derecha = null;            
-            else            
-                nodo.Padre.Izquierda = null;           
-        }
-        private void removeNodoCaso2(Nodo<T> nodo)
-        {        
-            bool derecha = nodo.Padre.Derecha == nodo ? true : false;
-
-            if (nodo.Derecha != null)
+            if (nodo != Raiz)
             {
-                nodo.Derecha.Padre = nodo.Padre;
-
-                if (derecha)                
-                    nodo.Padre.Derecha = nodo.Derecha;                                                        
-                else                
-                    nodo.Padre.Izquierda = nodo.Derecha;                
+                if (nodo.Padre.Derecha == nodo)
+                    nodo.Padre.Derecha = null;
+                else
+                    nodo.Padre.Izquierda = null;
             }
             else
             {
-                nodo.Izquierda.Padre = nodo.Padre;
-                if (derecha)                
-                    nodo.Padre.Derecha = nodo.Izquierda;                
-                else                
-                    nodo.Padre.Izquierda = nodo.Izquierda;                
+                Raiz = null;
+            }
+            
+        }
+        private void removeNodoCaso2(Nodo<T> nodo)
+        {
+            if (nodo != Raiz)
+            {
+                bool derecha = nodo.Padre.Derecha == nodo ? true : false;
+
+                if (nodo.Derecha != null)
+                {
+                    nodo.Derecha.Padre = nodo.Padre;
+
+                    if (derecha)
+                        nodo.Padre.Derecha = nodo.Derecha;
+                    else
+                        nodo.Padre.Izquierda = nodo.Derecha;
+                }
+                else
+                {
+                    nodo.Izquierda.Padre = nodo.Padre;
+                    if (derecha)
+                        nodo.Padre.Derecha = nodo.Izquierda;
+                    else
+                        nodo.Padre.Izquierda = nodo.Izquierda;
+                }
+            }
+            else
+            {
+                if (nodo.Derecha != null)
+                {
+                    Raiz = nodo.Derecha;
+                    nodo.Derecha.Padre = null;
+                }                                  
+                else
+                {
+                    Raiz = nodo.Izquierda;
+                    nodo.Izquierda.Padre = null;
+                }                                                    
             }
         }
         private void removeNodoCaso3(Nodo<T> nodo)
@@ -210,20 +234,35 @@ public void removeNodo(T dato, Delegate delegado)
             while (aux.Derecha != null)
             {
                 aux = aux.Derecha;
-            }            
-                            
-            aux.Padre.Derecha = aux.Izquierda;                                               
+            }
 
-            bool derecha = nodo.Padre.Derecha == nodo ? true : false;
+            if (aux.Padre != nodo)
+            {
+                aux.Padre.Derecha = aux.Izquierda;
+            }
 
             aux.Derecha = nodo.Derecha;
+            nodo.Derecha.Padre = aux;
             aux.Izquierda = nodo.Izquierda;
-            aux.Padre = nodo.Padre;
+            nodo.Izquierda.Padre = aux;
 
-            if (derecha)            
-                nodo.Padre.Derecha = aux;            
-            else            
-                nodo.Padre.Izquierda = aux;            
+            if (nodo != Raiz)
+            {
+                aux.Padre = nodo.Padre;
+                bool derecha = nodo.Padre.Derecha == nodo ? true : false;
+
+                if (derecha)
+                    nodo.Padre.Derecha = aux;
+                else
+                    nodo.Padre.Izquierda = aux;
+            }                
+            else
+            {
+                aux.Padre = null;
+                Raiz = aux;
+            }
+                
+            
         }
     }
 }
