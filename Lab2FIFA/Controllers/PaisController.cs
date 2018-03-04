@@ -174,36 +174,64 @@ namespace Lab2FIFA.Controllers
 
                     int contLinea = 0;
                     string csvData = System.IO.File.ReadAllText(filePath);
-                    /*foreach (string row in csvData.Split('\n'))
-                    {
-                        if (contLinea != 0)
-                        {
+                   /* foreach (string row in csvData.Split('}'))
+                    {*/
+                        
                            
-                                if (!string.IsNullOrEmpty(row))
+                               /* if (!string.IsNullOrEmpty(row))
+                                {*/
+                                if (Data<Pais>.instance.tipoDato == 0)
                                 {
-                                    todoeltexto +=row;
+                                    Pais[] pais = JsonConvert.DeserializeObject<Pais[]>(csvData);
+                                        if (pais.Length == 1)
+                                        {
+                                            Data<Pais>.instance.Arbol.Insertar(pais[0], Pais.CompareByName);
+                                        }
+                                        else
+                                        {
+                                            for (int i = 0; i <= pais.Length - 1; i++)
+                                            {
+                                                Data<Pais>.instance.Arbol.Insertar(pais[i], Pais.CompareByName);
+                                            }
+                                        }
+                                   
                                 }
-                            
-                        }
-                        contLinea++;
-                    }*/
-                    if(Data<Pais>.instance.tipoDato == 0)
-                    {
-                        Pais pais = JsonConvert.DeserializeObject<Pais>(csvData);
-                        Data<Pais>.instance.Arbol.Insertar(pais, Pais.CompareByName);
-                    }
-                    else if (Data<Entero>.instance.tipoDato == 1)
-                    {
-                        Entero entero = JsonConvert.DeserializeObject<Entero>(csvData);
-                        Data<Entero>.instance.Arbol.Insertar(entero, Entero.CompareByValor);
-                    }
-                    else
-                    {
-                        Texto texto = JsonConvert.DeserializeObject<Texto>(csvData);
-                        Data<Texto>.instance.Arbol.Insertar(texto, Texto.CompareByText);
-                    }
-                   
-                }
+                                else if (Data<Entero>.instance.tipoDato == 1)
+                                {
+                                    Entero[] entero = JsonConvert.DeserializeObject<Entero[]>(csvData);
+                                        if (entero.Length == 1)
+                                        {
+                                            Data<Entero>.instance.Arbol.Insertar(entero[0], Entero.CompareByValor);
+                                        }
+                                        else
+                                        {
+                                            for (int i = 0; i <= entero.Length - 1; i++)
+                                            {
+                                                Data<Entero>.instance.Arbol.Insertar(entero[i], Entero.CompareByValor);
+                                            }
+                                        }    
+                                }
+                                else
+                                {
+                                    Texto[] texto = JsonConvert.DeserializeObject<Texto[]>(csvData);
+                                    if (texto.Length == 1)
+                                    {
+                                        Data<Texto>.instance.Arbol.Insertar(texto[0], Texto.CompareByText);
+                                    }
+                                    else
+                                    {
+                                        for (int i = 0; i <= texto.Length - 1; i++)
+                                        {
+                                            Data<Texto>.instance.Arbol.Insertar(texto[i], Texto.CompareByText);
+                                        }
+                                    }    
+                                }
+
+                            }
+
+                        //}
+                   // }
+                
                 return RedirectToAction("Index");
             }
             catch
