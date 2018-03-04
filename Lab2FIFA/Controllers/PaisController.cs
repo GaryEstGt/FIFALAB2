@@ -188,12 +188,12 @@ namespace Lab2FIFA.Controllers
                     }
                     else if (Data<Entero>.instance.tipoDato == 1)
                     {
-                        Entero entero = JsonConvert.DeserializeObject<Entero>(todoeltexto);
+                        Entero entero = JsonConvert.DeserializeObject<Entero>(csvData);
                         Data<Entero>.instance.Arbol.Insertar(entero, Entero.CompareByValor);
                     }
                     else
                     {
-                        Texto texto = JsonConvert.DeserializeObject<Texto>(todoeltexto);
+                        Texto texto = JsonConvert.DeserializeObject<Texto>(csvData);
                         Data<Texto>.instance.Arbol.Insertar(texto, Texto.CompareByText);
                     }
                    
