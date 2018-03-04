@@ -27,14 +27,20 @@ namespace Lab2FIFA.Controllers
                 {
                     case "Texto":
                         Data<Texto>.instance.tipoDato = 2;
+                        Data<Pais>.instance.tipoDato = 2;
+                        Data<Entero>.instance.tipoDato = 2;
                         retorno = "IndexTexto";
                         break;
                     case "Entero":
+                        Data<Texto>.instance.tipoDato = 1;
+                        Data<Pais>.instance.tipoDato = 1;
                         Data<Entero>.instance.tipoDato = 1;
                         retorno = "IndexEntero";
                         break;
                     case "Pais":
                         Data<Pais>.instance.tipoDato = 0;
+                        Data<Texto>.instance.tipoDato = 0;
+                        Data<Entero>.instance.tipoDato = 0;
                         break;
                 }
                 return RedirectToAction(retorno);
@@ -168,7 +174,7 @@ namespace Lab2FIFA.Controllers
 
                     int contLinea = 0;
                     string csvData = System.IO.File.ReadAllText(filePath);
-                    /*foreach (string row in csvData.Split('\r'))
+                    /*foreach (string row in csvData.Split('\n'))
                     {
                         if (contLinea != 0)
                         {
