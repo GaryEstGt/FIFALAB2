@@ -142,7 +142,7 @@ namespace Biblioteca
             }
         }
         
-public bool removeNodo(T dato, Delegate delegado)
+public void removeNodo(T dato, Delegate delegado)
         {
             Nodo<T> nodo = findWhere(delegado, dato, Raiz);
             /* Creamos variables para saber si tiene hijos izquierdo y derecho */
@@ -151,43 +151,79 @@ public bool removeNodo(T dato, Delegate delegado)
 
             if (!tieneNodoDerecha && !tieneNodoIzquierda)
             {
-                return removeNodoCaso1(nodo);
+                removeNodoCaso1(nodo);
             }
 
       
             if (tieneNodoDerecha && !tieneNodoIzquierda)
             {
-                return removeNodoCaso2(nodo);
+                removeNodoCaso2(nodo);
             }
 
   
             if (!tieneNodoDerecha && tieneNodoIzquierda)
             {
-                return removeNodoCaso2(nodo);
+                removeNodoCaso2(nodo);
             }
 
             /* Caso 3: Tiene ambos hijos */
             if (tieneNodoDerecha && tieneNodoIzquierda)
             {
-                return removeNodoCaso3(nodo);
-            }
-
-            return false;
+                removeNodoCaso3(nodo);
+            }            
         }
         
 
-private bool removeNodoCaso1(Nodo<T> nodo)
+        private void removeNodoCaso1(Nodo<T> nodo)
         {
-            
-            return false;
+            if (nodo.Padre.Derecha == nodo)            
+                nodo.Padre.Derecha = null;            
+            else            
+                nodo.Padre.Izquierda = null;           
         }
-        private bool removeNodoCaso2(Nodo<T> nodo)
-        {
-            return false;
+        private void removeNodoCaso2(Nodo<T> nodo)
+        {        
+            bool derecha = nodo.Padre.Derecha == nodo ? true : false;
+
+            if (nodo.Derecha != null)
+            {
+                nodo.Derecha.Padre = nodo.Padre;
+
+                if (derecha)                
+                    nodo.Padre.Derecha = nodo.Derecha;                                                        
+                else                
+                    nodo.Padre.Izquierda = nodo.Derecha;                
+            }
+            else
+            {
+                nodo.Izquierda.Padre = nodo.Padre;
+                if (derecha)                
+                    nodo.Padre.Derecha = nodo.Izquierda;                
+                else                
+                    nodo.Padre.Izquierda = nodo.Izquierda;                
+            }
         }
-        private bool removeNodoCaso3(Nodo<T> nodo)
+        private void removeNodoCaso3(Nodo<T> nodo)
         {
-            return false;
+            Nodo<T> aux = nodo.Izquierda;
+
+            while (aux.Derecha != null)
+            {
+                aux = aux.Derecha;
+            }            
+                            
+            aux.Padre.Derecha = aux.Izquierda;                                               
+
+            bool derecha = nodo.Padre.Derecha == nodo ? true : false;
+
+            aux.Derecha = nodo.Derecha;
+            aux.Izquierda = nodo.Izquierda;
+            aux.Padre = nodo.Padre;
+
+            if (derecha)            
+                nodo.Padre.Derecha = aux;            
+            else            
+                nodo.Padre.Izquierda = aux;            
         }
     }
 }
