@@ -1,5 +1,5 @@
-@"{
-  'Id': 1,
-  'Nombre':'Brasil',
-  'Grupo': 'A'
-}"
+{
+  "Id": 1,
+  "Name": "Brasil",
+  "Group": "A"
+}

@@ -168,7 +168,7 @@ namespace Lab2FIFA.Controllers
 
                     int contLinea = 0;
                     string csvData = System.IO.File.ReadAllText(filePath);
-                    foreach (string row in csvData.Split('\n'))
+                    /*foreach (string row in csvData.Split('\r'))
                     {
                         if (contLinea != 0)
                         {
@@ -180,10 +180,10 @@ namespace Lab2FIFA.Controllers
                             
                         }
                         contLinea++;
-                    }
+                    }*/
                     if(Data<Pais>.instance.tipoDato == 0)
                     {
-                        Pais pais = JsonConvert.DeserializeObject<Pais>(todoeltexto);
+                        Pais pais = JsonConvert.DeserializeObject<Pais>(csvData);
                         Data<Pais>.instance.Arbol.Insertar(pais, Pais.CompareByName);
                     }
                     else if (Data<Entero>.instance.tipoDato == 1)
