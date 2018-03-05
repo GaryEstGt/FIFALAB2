@@ -16,13 +16,21 @@
     <input type="submit" name="submitButton" value="PostOrden" />
     <input type="submit" name="submitButton" value="Validacion" />    
 }
+
+@if(null != TempData["alertMessage"])
+   {
+<script type="text/javascript">
+       alert('@TempData["alertMessage"]');
+</script>
+   }
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.valor)
         </th>
         <th></th>
-    </tr>
+    </tr>        
 
 @foreach (var item in Model) {
     <tr>

@@ -16,6 +16,14 @@
     <input type="submit" name="submitButton" value="PostOrden" />
     <input type="submit" name="submitButton" value="Validacion" />
 }
+@if (null != TempData["alertMessage"])
+{
+    <script type="text/javascript">
+       alert('@TempData["alertMessage"]');
+    </script>
+}
+
+
 <table class="table">
     <tr>
         <th>

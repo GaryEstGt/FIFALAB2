@@ -100,7 +100,16 @@ namespace Lab2FIFA.Controllers
             else
             {
                 Data<Pais>.instance.lista.Clear();
-                if (Data<Pais>.instance.Arbol.Equilibrio() == null)
+                Pais ent = Data<Pais>.instance.Arbol.Equilibrio();
+                string equilibrio = "";
+                if (ent == null)
+                    equilibrio = "esta equilibrado";
+                else
+                    equilibrio = "no esta equilibrado";
+
+                string deg = Data<Pais>.instance.Arbol.degenerado() ? "es degenerado" : "no es degenerado";
+
+                if (ent == null)
                 {
                     Data<Pais>.instance.Arbol.MostrarInOrden(ref Data<Pais>.instance.lista);
                 }
@@ -108,7 +117,7 @@ namespace Lab2FIFA.Controllers
                 {
                     Data<Pais>.instance.lista.Add(Data<Pais>.instance.Arbol.Equilibrio());
                 }
-
+                TempData["alertMessage"] = "El arbol " + equilibrio + " y " + deg;
             }
             return View(Data<Pais>.instance.lista);
         }
@@ -147,14 +156,24 @@ namespace Lab2FIFA.Controllers
             else
             {
                 Data<Entero>.instance.lista.Clear();
-                if (Data<Entero>.instance.Arbol.Equilibrio() == null)
+                Entero ent = Data<Entero>.instance.Arbol.Equilibrio();
+                string equilibrio = "";
+                if (ent == null)                
+                    equilibrio = "esta equilibrado";                
+                else                
+                    equilibrio = "no esta equilibrado";                
+
+                string deg = Data<Entero>.instance.Arbol.degenerado() ? "es degenerado" : "no es degenerado";
+
+                if (ent == null)
                 {
                     Data<Entero>.instance.Arbol.MostrarInOrden(ref Data<Entero>.instance.lista);
                 }
                 else
                 {
-                    Data<Entero>.instance.lista.Add(Data<Entero>.instance.Arbol.Equilibrio());
-                }                
+                    Data<Entero>.instance.lista.Add(Data<Entero>.instance.Arbol.Equilibrio());                                        
+                }
+                TempData["alertMessage"] = "El arbol " + equilibrio + " y " + deg;
             }
             return View(Data<Entero>.instance.lista);
         }
@@ -192,18 +211,28 @@ namespace Lab2FIFA.Controllers
             }
             else{
                 Data<Texto>.instance.lista.Clear();
-                if (Data<Texto>.instance.Arbol.Equilibrio() == null)
+                Texto ent = Data<Texto>.instance.Arbol.Equilibrio();
+                string equilibrio = "";
+                if (ent == null)
+                    equilibrio = "esta equilibrado";
+                else
+                    equilibrio = "no esta equilibrado";
+
+                string deg = Data<Texto>.instance.Arbol.degenerado() ? "es degenerado" : "no es degenerado";
+
+                if (ent == null)
                 {
                     Data<Texto>.instance.Arbol.MostrarInOrden(ref Data<Texto>.instance.lista);
                 }
                 else
                 {
                     Data<Texto>.instance.lista.Add(Data<Texto>.instance.Arbol.Equilibrio());
-                }                
+                }
+                TempData["alertMessage"] = "El arbol " + equilibrio + " y " + deg;
             }
             return View(Data<Texto>.instance.lista);
         }        
-
+        
         // GET: Pais/Details/5
         public ActionResult Details(int id)
         {
@@ -284,7 +313,7 @@ namespace Lab2FIFA.Controllers
             }
         }
         public ActionResult DeleteEntero(int num)
-        {
+        {            
             Entero ent = new Entero { valor = num};
             return View(ent);
         }
