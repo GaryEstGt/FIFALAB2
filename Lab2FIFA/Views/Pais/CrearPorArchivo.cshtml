@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "CrearPorArchivo";
+}
+
+<h2>CrearPorArchivo</h2>
+@using (Html.BeginForm("CrearPorArchivo", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="postedFile" />
+    <input type="submit" value="Importar" />
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

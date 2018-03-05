@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Lab2FIFA.Models.Texto>
+
+@{
+    ViewBag.Title = "IndexTexto";
+}
+
+<h2>IndexTexto</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CrearPorArchivo")
+</p>
+@using (Html.BeginForm("IndexTexto", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="submit" name="submitButton" value="PreOrden" />
+    <input type="submit" name="submitButton" value="InOrden" />
+    <input type="submit" name="submitButton" value="PostOrden" />
+    <input type="submit" name="submitButton" value="Validacion" />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.texto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.texto)
+        </td>
+        <td>            
+            @Html.ActionLink("Delete", "DeleteTexto", new { id=item.Id, Texto=item.texto })
+        </td>
+    </tr>
+}
+
+</table>
