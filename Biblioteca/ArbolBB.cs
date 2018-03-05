@@ -11,6 +11,7 @@ namespace Biblioteca
         public Nodo<T> Raiz;
         public List<T> nodosHoja;
         int altura;
+        T nodoDesequilibrado;
         public ArbolBB()
         {
             Raiz = null;
@@ -283,16 +284,13 @@ namespace Biblioteca
                 
             
         }
-        public Nodo<T> verEquilibrio(Nodo<T> nodo)
+        public void verEquilibrio(Nodo<T> nodo)
         {
-            int valorDer = 0;
-            int valorIzq = 0;
-            if(nodo.Derecha==null && nodo.Izquierda == null)
+            if (nodo != null)
             {
-                return null;
-            }
-            else
-            {
+                int valorDer = 0;
+                int valorIzq = 0;
+
                 if (nodo.Izquierda == null)
                 {
                     valorIzq = 0;
@@ -308,38 +306,19 @@ namespace Biblioteca
                     valorIzq = VerAltura(nodo.Izquierda);
                     valorDer = VerAltura(nodo.Derecha);
                 }
-                if ((valorDer - valorIzq) > 1 || (valorDer - valorIzq) < -1)
+                if ((valorDer - valorIzq) > 0 || (valorDer - valorIzq) < 0)
                 {
-                    return nodo;
+                    nodoDesequilibrado = nodo.info;
                 }
-                else
-                {
-                    if (nodo.Derecha == null)
-                    {
-                        verEquilibrio(nodo.Izquierda);
-                    }
-                    else if (nodo.Izquierda == null)
-                    {
-                        verEquilibrio(nodo.Derecha);
-
-                    }
-                  
                     
+                        verEquilibrio(nodo.Derecha);
+                        verEquilibrio(nodo.Izquierda);
                 }
-            }
-            return null;
         }
         public T Equilibrio()
         {
-            if (verEquilibrio(Raiz) == null)
-            {
-                return default(T);
-            }
-            else
-            {
-                return verEquilibrio(Raiz).info;
-            }
-           
+            verEquilibrio(Raiz); 
+                return nodoDesequilibrado;                
         }
 
         public bool degenerado()
