@@ -72,17 +72,17 @@ namespace Lab2FIFA.Controllers
             if (Data<Pais>.instance.orden == 0)
             {
                 Data<Pais>.instance.lista.Clear();
-                Data<Pais>.instance.Arbol.MostrarInOrden(Data<Pais>.instance.lista);
+                Data<Pais>.instance.Arbol.MostrarInOrden(ref Data<Pais>.instance.lista);
             }
             else if(Data<Pais>.instance.orden == 1)
             {
                 Data<Pais>.instance.lista.Clear();
-                Data<Pais>.instance.Arbol.MostrarPreOrden(Data<Pais>.instance.lista);
+                Data<Pais>.instance.Arbol.MostrarPreOrden(ref Data<Pais>.instance.lista);
             }
             else
             {
                 Data<Pais>.instance.lista.Clear();
-                Data<Pais>.instance.Arbol.MostrarPostOrden(Data<Pais>.instance.lista);
+                Data<Pais>.instance.Arbol.MostrarPostOrden(ref Data<Pais>.instance.lista);
             }
             return View(Data<Pais>.instance.lista);
         }
@@ -103,17 +103,17 @@ namespace Lab2FIFA.Controllers
             if (Data<Entero>.instance.orden == 0)
             {
                 Data<Entero>.instance.lista.Clear();
-                Data<Entero>.instance.Arbol.MostrarInOrden(Data<Entero>.instance.lista);
+                Data<Entero>.instance.Arbol.MostrarInOrden(ref Data<Entero>.instance.lista);
             }
             else if (Data<Entero>.instance.orden == 1)
             {
                 Data<Entero>.instance.lista.Clear();
-                Data<Entero>.instance.Arbol.MostrarPreOrden(Data<Entero>.instance.lista);
+                Data<Entero>.instance.Arbol.MostrarPreOrden(ref Data<Entero>.instance.lista);
             }
             else
             {
                 Data<Entero>.instance.lista.Clear();
-                Data<Entero>.instance.Arbol.MostrarPostOrden(Data<Entero>.instance.lista);
+                Data<Entero>.instance.Arbol.MostrarPostOrden(ref Data<Entero>.instance.lista);
             }
             return View(Data<Entero>.instance.lista);
         }
@@ -134,17 +134,17 @@ namespace Lab2FIFA.Controllers
             if (Data<Texto>.instance.orden == 0)
             {
                 Data<Texto>.instance.lista.Clear();
-                Data<Texto>.instance.Arbol.MostrarInOrden(Data<Texto>.instance.lista);
+                Data<Texto>.instance.Arbol.MostrarInOrden(ref Data<Texto>.instance.lista);
             }
             else if (Data<Texto>.instance.orden == 1)
             {
                 Data<Texto>.instance.lista.Clear();
-                Data<Texto>.instance.Arbol.MostrarPreOrden(Data<Texto>.instance.lista);
+                Data<Texto>.instance.Arbol.MostrarPreOrden(ref Data<Texto>.instance.lista);
             }
             else
             {
                 Data<Texto>.instance.lista.Clear();
-                Data<Texto>.instance.Arbol.MostrarPostOrden(Data<Texto>.instance.lista);
+                Data<Texto>.instance.Arbol.MostrarPostOrden(ref Data<Texto>.instance.lista);
             }
             return View(Data<Texto>.instance.lista);
         }
