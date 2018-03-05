@@ -57,24 +57,60 @@ namespace Lab2FIFA.Controllers
      
         public ActionResult Index()
         {
-            Pais country = new Pais();
-            List<Pais> lista = new List<Pais>();
-            country.Id = 1;
-            country.Name = "hola";
-            lista.Add(country);
-            return View(lista);
+            if (Data<Pais>.instance.orden == 0)
+            {
+                Data<Pais>.instance.lista.Clear();
+                Data<Pais>.instance.Arbol.MostrarInOrden(Data<Pais>.instance.lista);
+            }
+            else if(Data<Pais>.instance.orden == 1)
+            {
+                Data<Pais>.instance.lista.Clear();
+                Data<Pais>.instance.Arbol.MostrarPreOrden(Data<Pais>.instance.lista);
+            }
+            else
+            {
+                Data<Pais>.instance.lista.Clear();
+                Data<Pais>.instance.Arbol.MostrarPostOrden(Data<Pais>.instance.lista);
+            }
+            return View(Data<Pais>.instance.lista);
         }
         public ActionResult IndexEntero()
         {
-            List<Entero> lista = new List<Entero>();
-            lista.Add(new Entero{ valor=1});
-            return View(lista);
+            if (Data<Entero>.instance.orden == 0)
+            {
+                Data<Entero>.instance.lista.Clear();
+                Data<Entero>.instance.Arbol.MostrarInOrden(Data<Entero>.instance.lista);
+            }
+            else if (Data<Entero>.instance.orden == 1)
+            {
+                Data<Entero>.instance.lista.Clear();
+                Data<Entero>.instance.Arbol.MostrarPreOrden(Data<Entero>.instance.lista);
+            }
+            else
+            {
+                Data<Entero>.instance.lista.Clear();
+                Data<Entero>.instance.Arbol.MostrarPostOrden(Data<Entero>.instance.lista);
+            }
+            return View(Data<Entero>.instance.lista);
         }
         public ActionResult IndexTexto()
         {
-            List<Texto> lista = new List<Texto>();
-            lista.Add(new Texto { texto = "hola" });
-            return View(lista);
+            if (Data<Texto>.instance.orden == 0)
+            {
+                Data<Texto>.instance.lista.Clear();
+                Data<Texto>.instance.Arbol.MostrarInOrden(Data<Texto>.instance.lista);
+            }
+            else if (Data<Texto>.instance.orden == 1)
+            {
+                Data<Texto>.instance.lista.Clear();
+                Data<Texto>.instance.Arbol.MostrarPreOrden(Data<Texto>.instance.lista);
+            }
+            else
+            {
+                Data<Texto>.instance.lista.Clear();
+                Data<Texto>.instance.Arbol.MostrarPostOrden(Data<Texto>.instance.lista);
+            }
+            return View(Data<Texto>.instance.lista);
         }
 
         // GET: Pais/Details/5
@@ -228,13 +264,25 @@ namespace Lab2FIFA.Controllers
                                 }
 
                             }
-                Pais p = new Pais {Id = 1, Name = "Brasil", Group = "A"};
-                Data<Pais>.instance.Arbol.removeNodo(p, Pais.CompareByName);
+                //  Pais p = new Pais {Id = 1, Name = "Brasil", Group = "A"};
+                //Data<Pais>.instance.Arbol.removeNodo(p, Pais.CompareByName);
 
-                        //}
-                   // }
-                
-                return RedirectToAction("Index");
+                //}
+                // }
+                String retorno = "Index";
+                if(Data<Pais>.instance.tipoDato==0 || Data<Texto>.instance.tipoDato == 0|| Data<Entero>.instance.tipoDato == 0)
+                {
+                    retorno = "Index";
+                }
+                else if(Data<Pais>.instance.tipoDato == 1 || Data<Texto>.instance.tipoDato == 1 || Data<Entero>.instance.tipoDato == 1)
+                {
+                    retorno = "IndexEntero";
+                }
+                else if(Data<Pais>.instance.tipoDato == 2 || Data<Texto>.instance.tipoDato == 2 || Data<Entero>.instance.tipoDato == 2)
+                {
+                    retorno = "IndexTexto";
+                }
+                return RedirectToAction(retorno);
             }
             catch
             {

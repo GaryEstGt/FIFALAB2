@@ -121,6 +121,10 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
             }
         }
+        public void MostrarInOrden(List<T> lista)
+        {
+            InOrden(Raiz, ref lista);
+        }
 
         private void PostOrden(Nodo<T> nAux, ref List<T> lista)
         {
@@ -130,6 +134,10 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
                 lista.Add(nAux.info);
             }
+        }
+        public void MostrarPostOrden(List<T> lista)
+        {
+            PostOrden(Raiz, ref lista);
         }
 
         private void PreOrden(Nodo<T> nAux, ref List<T> lista)
@@ -141,8 +149,11 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
             }
         }
-        
-public void removeNodo(T dato, Delegate delegado)
+        public void MostrarPreOrden(List<T> lista)
+        {
+            PreOrden(Raiz, ref lista);
+        }
+        public void removeNodo(T dato, Delegate delegado)
         {
             Nodo<T> nodo = findWhere(delegado, dato, Raiz);
             /* Creamos variables para saber si tiene hijos izquierdo y derecho */
