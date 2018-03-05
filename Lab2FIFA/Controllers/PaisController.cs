@@ -74,8 +74,20 @@ namespace Lab2FIFA.Controllers
             }
             return View(Data<Pais>.instance.lista);
         }
-        public ActionResult IndexEntero()
+        public ActionResult IndexEntero(string submitButton)
         {
+            switch (submitButton)
+            {
+                case "PreOrden":
+                    Data<Entero>.instance.orden = 1;
+                    break;
+                case "InOrden":
+                    Data<Entero>.instance.orden = 0;
+                    break;
+                case "PostOrden":
+                    Data<Entero>.instance.orden = 2;
+                    break;
+            }
             if (Data<Entero>.instance.orden == 0)
             {
                 Data<Entero>.instance.lista.Clear();
@@ -93,8 +105,20 @@ namespace Lab2FIFA.Controllers
             }
             return View(Data<Entero>.instance.lista);
         }
-        public ActionResult IndexTexto()
+        public ActionResult IndexTexto(string submitButton)
         {
+            switch (submitButton)
+            {
+                case "PreOrden":
+                    Data<Texto>.instance.orden = 1;
+                    break;
+                case "InOrden":
+                    Data<Texto>.instance.orden = 0;
+                    break;
+                case "PostOrden":
+                    Data<Texto>.instance.orden = 2;
+                    break;
+            }
             if (Data<Texto>.instance.orden == 0)
             {
                 Data<Texto>.instance.lista.Clear();

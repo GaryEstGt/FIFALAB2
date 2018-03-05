@@ -9,6 +9,12 @@
 <p>
     @Html.ActionLink("Create New", "CrearPorArchivo")
 </p>
+@using (Html.BeginForm("IndexTexto", "Pais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="submit" name="submitButton" value="PreOrden" />
+    <input type="submit" name="submitButton" value="InOrden" />
+    <input type="submit" name="submitButton" value="PostOrden" />
+}
 <table class="table">
     <tr>
         <th>
