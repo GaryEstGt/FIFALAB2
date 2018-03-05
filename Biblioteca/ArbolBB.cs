@@ -285,16 +285,48 @@ namespace Biblioteca
         }
         public Nodo<T> verEquilibrio(Nodo<T> nodo)
         {
-            if((VerAltura(nodo.Derecha)-VerAltura(nodo.Izquierda))>1 || (VerAltura(nodo.Derecha) - VerAltura(nodo.Izquierda)) < -1)
-                { 
-                return nodo;
+            int valorDer = 0;
+            int valorIzq = 0;
+            if(nodo.Derecha==null && nodo.Izquierda == null)
+            {
+                return null;
             }
             else
             {
-                verEquilibrio(nodo.Izquierda);
-                verEquilibrio(nodo.Derecha);
-            }
+                if (nodo.Izquierda == null)
+                {
+                    valorIzq = 0;
+                    valorDer = VerAltura(nodo.Derecha);
+                }
+                else if (nodo.Derecha == null)
+                {
+                    valorIzq = VerAltura(nodo.Izquierda);
+                    valorDer = 0;
+                }
+                else
+                {
+                    valorIzq = VerAltura(nodo.Izquierda);
+                    valorDer = VerAltura(nodo.Derecha);
+                }
+                if ((valorDer - valorIzq) > 1 || (valorDer - valorIzq) < -1)
+                {
+                    return nodo;
+                }
+                else
+                {
+                    if (nodo.Derecha == null)
+                    {
+                        verEquilibrio(nodo.Izquierda);
+                    }
+                    else if (nodo.Izquierda == null)
+                    {
+                        verEquilibrio(nodo.Derecha);
 
+                    }
+                  
+                    
+                }
+            }
             return null;
         }
         public T Equilibrio()
