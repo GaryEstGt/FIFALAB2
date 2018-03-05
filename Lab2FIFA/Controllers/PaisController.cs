@@ -51,10 +51,7 @@ namespace Lab2FIFA.Controllers
             }
         }
         // GET: Pais
-        
-
-        
-     
+                     
         public ActionResult Index(string submitButton)
         {
             switch (submitButton)
@@ -107,7 +104,7 @@ namespace Lab2FIFA.Controllers
             switch (submitButton)
             {
                 case "PreOrden":
-                    Data<Entero>.instance.orden = 1;
+                    Data<Entero>.instance.orden = 1;                    
                     break;
                 case "InOrden":
                     Data<Entero>.instance.orden = 0;
@@ -129,12 +126,13 @@ namespace Lab2FIFA.Controllers
                 Data<Entero>.instance.lista.Clear();
                 Data<Entero>.instance.Arbol.MostrarPreOrden(ref Data<Entero>.instance.lista);
             }
-            else if(Data<Entero>.instance.orden == 2)
+            else if (Data<Entero>.instance.orden == 2)
             {
                 Data<Entero>.instance.lista.Clear();
                 Data<Entero>.instance.Arbol.MostrarPostOrden(ref Data<Entero>.instance.lista);
             }
-            else{
+            else
+            {
                 Data<Entero>.instance.lista.Clear();
                 if (Data<Entero>.instance.Arbol.Equilibrio() == null)
                 {
@@ -143,7 +141,7 @@ namespace Lab2FIFA.Controllers
                 else
                 {
                     Data<Entero>.instance.lista.Add(Data<Entero>.instance.Arbol.Equilibrio());
-                }
+                }                
             }
             return View(Data<Entero>.instance.lista);
         }
@@ -188,10 +186,10 @@ namespace Lab2FIFA.Controllers
                 else
                 {
                     Data<Texto>.instance.lista.Add(Data<Texto>.instance.Arbol.Equilibrio());
-                }
+                }                
             }
             return View(Data<Texto>.instance.lista);
-        }
+        }        
 
         // GET: Pais/Details/5
         public ActionResult Details(int id)
