@@ -55,8 +55,20 @@ namespace Lab2FIFA.Controllers
 
         
      
-        public ActionResult Index()
+        public ActionResult Index(string submitButton)
         {
+            switch (submitButton)
+            {
+                case "PreOrden":
+                    Data<Pais>.instance.orden = 1;
+                    break;
+                case "InOrden":
+                    Data<Pais>.instance.orden = 0;
+                    break;
+                case "PostOrden":
+                    Data<Pais>.instance.orden = 2;
+                    break;
+            }
             if (Data<Pais>.instance.orden == 0)
             {
                 Data<Pais>.instance.lista.Clear();
