@@ -119,7 +119,7 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
             }
         }
-        public void MostrarInOrden(List<T> lista)
+        public void MostrarInOrden(ref List<T> lista)
         {
             InOrden(Raiz, ref lista);
         }
@@ -128,12 +128,12 @@ namespace Biblioteca
         {
             if (nAux != null)
             {
-                InOrden(nAux.Izquierda, ref lista);
-                InOrden(nAux.Derecha, ref lista);
+                PostOrden(nAux.Izquierda, ref lista);
+                PostOrden(nAux.Derecha, ref lista);
                 lista.Add(nAux.info);
             }
         }
-        public void MostrarPostOrden(List<T> lista)
+        public void MostrarPostOrden(ref List<T> lista)
         {
             PostOrden(Raiz, ref lista);
         }
@@ -143,11 +143,11 @@ namespace Biblioteca
             if (nAux != null)
             {
                 lista.Add(nAux.info);
-                InOrden(nAux.Izquierda, ref lista);
-                InOrden(nAux.Derecha, ref lista);
+                PreOrden(nAux.Izquierda, ref lista);
+                PreOrden(nAux.Derecha, ref lista);
             }
         }
-        public void MostrarPreOrden(List<T> lista)
+        public void MostrarPreOrden(ref List<T> lista)
         {
             PreOrden(Raiz, ref lista);
         }
