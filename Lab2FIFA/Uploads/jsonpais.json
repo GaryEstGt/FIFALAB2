@@ -24,8 +24,13 @@
     "Name": "ahjjmala",
     "Group": "A"
   },
-   {
+  {
     "Id": 6,
+    "Name": "Brasilia",
+    "Group": "A"
+  },
+  {
+    "Id": 7,
     "Name": "Brasilia",
     "Group": "A"
   }
