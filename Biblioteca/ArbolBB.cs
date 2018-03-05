@@ -91,10 +91,10 @@ namespace Biblioteca
             }
         }
 
-        public int VerAltura()
+        public int VerAltura(Nodo<T> Nodo)
         {
             altura = 0;
-            VerAltura(Raiz, altura);
+            VerAltura(Nodo, altura);
             return altura;
         }
 
@@ -119,6 +119,10 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
             }
         }
+        public void MostrarInOrden(List<T> lista)
+        {
+            InOrden(Raiz, ref lista);
+        }
 
         private void PostOrden(Nodo<T> nAux, ref List<T> lista)
         {
@@ -128,6 +132,10 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
                 lista.Add(nAux.info);
             }
+        }
+        public void MostrarPostOrden(List<T> lista)
+        {
+            PostOrden(Raiz, ref lista);
         }
 
         private void PreOrden(Nodo<T> nAux, ref List<T> lista)
@@ -139,8 +147,11 @@ namespace Biblioteca
                 InOrden(nAux.Derecha, ref lista);
             }
         }
-        
-public void removeNodo(T dato, Delegate delegado)
+        public void MostrarPreOrden(List<T> lista)
+        {
+            PreOrden(Raiz, ref lista);
+        }
+        public void removeNodo(T dato, Delegate delegado)
         {
             Nodo<T> nodo = null;
             findWhere(delegado, dato, Raiz, ref nodo);
@@ -271,6 +282,24 @@ public void removeNodo(T dato, Delegate delegado)
             }
                 
             
+        }
+        public Nodo<T> verEquilibrio(Nodo<T> nodo)
+        {
+            if((VerAltura(nodo.Derecha)-VerAltura(nodo.Izquierda))>1 || (VerAltura(nodo.Derecha) - VerAltura(nodo.Izquierda)) < -1)
+                { 
+                return nodo;
+            }
+            else
+            {
+                verEquilibrio(nodo.Izquierda);
+                verEquilibrio(nodo.Derecha);
+            }
+
+            return null;
+        }
+        public T Equilibrio()
+        {
+            return verEquilibrio(Raiz).info;
         }
     }
 }

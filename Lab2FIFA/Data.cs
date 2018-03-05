@@ -24,5 +24,8 @@ namespace Lab2FIFA
 
         public Biblioteca.ArbolBB<T> Arbol = new Biblioteca.ArbolBB<T>();
         public int tipoDato;
+        public int orden = 0;
+        public List<T> lista = new List<T>();
+        
     }
 }
