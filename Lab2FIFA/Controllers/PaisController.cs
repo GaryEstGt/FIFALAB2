@@ -200,20 +200,78 @@ namespace Lab2FIFA.Controllers
         }
 
         // GET: Pais/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, string name, string group)
         {
             return View();
         }
 
         // POST: Pais/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, string name, string group, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                Pais pais = new Pais
+                {
+                    Id = 0,
+                    Name = name,
+                    Group = group
+                };
 
+                Data<Pais>.instance.Arbol.removeNodo(pais, Pais.CompareByName);
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        public ActionResult DeleteEntero(int num)
+        {
+            return View();
+        }
+
+        // POST: Pais/Delete/5
+        [HttpPost]
+        public ActionResult DeleteEntero(int num, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                Entero entero = new Entero
+                {                    
+                    valor = num
+                };
+
+                Data<Entero>.instance.Arbol.removeNodo(entero, Entero.CompareByValor);
+                return RedirectToAction("IndexEntero");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        public ActionResult DeleteTexto(int id, string Texto)
+        {
+            return View();
+        }
+
+        // POST: Pais/Delete/5
+        [HttpPost]
+        public ActionResult DeleteTexto(int id, string Texto, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                Texto text = new Texto
+                {
+                    Id = id,
+                    texto = Texto
+                };
+
+                Data<Texto>.instance.Arbol.removeNodo(text, Models.Texto.CompareByText);
+                return RedirectToAction("IndexTexto");
             }
             catch
             {

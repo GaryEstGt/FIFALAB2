@@ -28,10 +28,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.texto)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        <td>            
+            @Html.ActionLink("Delete", "DeleteTexto", new { id=item.Id, Texto=item.texto })
         </td>
     </tr>
 }

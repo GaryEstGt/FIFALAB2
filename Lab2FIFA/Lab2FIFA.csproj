@@ -277,6 +277,9 @@
     <Content Include="Views\Pais\IndexEntero.cshtml" />
     <Content Include="Views\Pais\IndexTexto.cshtml" />
     <Content Include="Views\Pais\CrearPorArchivo.cshtml" />
+    <Content Include="Views\Pais\Delete.cshtml" />
+    <Content Include="Views\Pais\DeleteEntero.cshtml" />
+    <Content Include="Views\Pais\DeleteTexto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

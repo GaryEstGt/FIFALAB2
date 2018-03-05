@@ -7,9 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Lab2FIFA.Models
 {
     public class Entero
-    {
-        [Key]
-        public int Id { get; set; }
+    {        
         [Display (Name = "Valor")]
         public int valor { get; set; }
 
