@@ -19,7 +19,6 @@ Entero
 
 [
   {
-    "Id": 2,
     "valor": 4
   }
 ]
