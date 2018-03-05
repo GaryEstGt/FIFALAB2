@@ -1,67 +1,32 @@
 [
   {
     "Group": "A",
-    "Id": 1,
+    "Id": 2,
     "Name": "Brasil"
   },
   {
-    "Id": 2,
+    "Id": 1,
     "Name": "Guatemala",
     "Group": "A"
   },
   {
-    "Group": "A",
-    "Id": 3,
-    "Name": "Argentina"
-  },
-  {
-    "Group": "A",
     "Id": 4,
-    "Name": "Portugal"
+    "Name": "Guatea",
+    "Group": "A"
   },
   {
-    "Group": "B",
+    "Id": 3,
+    "Name": "atemala",
+    "Group": "A"
+  },
+  {
     "Id": 5,
-    "Name": "Mexico"
+    "Name": "ahjjmala",
+    "Group": "A"
   },
-  {
-    "Group": "B",
+   {
     "Id": 6,
-    "Name": "Honduras"
-  },
-  {
-    "Group": "B",
-    "Id": 7,
-    "Name": "Panama"
-  },
-  {
-    "Group": "B",
-    "Id": 8,
-    "Name": "El Salvador"
-  },
-  {
-    "Group": "C",
-    "Id": 9,
-    "Name": "Costa Rica"
-  },
-  {
-    "Group": "C",
-    "Id": 10,
-    "Name": "Babilonia"
-  },
-  {
-    "Group": "C",
-    "Id": 11,
-    "Name": "Belice"
-  },
-  {
-    "Group": "C",
-    "Id": 12,
-    "Name": "Colombia"
-  },
-  {
-    "Group": "D",
-    "Id": 13,
-    "Name": "Z"
+    "Name": "Brasilia",
+    "Group": "A"
   }
 ]
