@@ -341,5 +341,39 @@ namespace Biblioteca
             }
            
         }
+
+        public bool degenerado()
+        {
+            bool degenerado = false;
+
+            Nodo<T> aux = Raiz;
+
+            while (aux != null)
+            {
+                if (aux.Derecha != null && aux.Izquierda != null)
+                {
+                    break;
+                }
+                else if (aux.Derecha == null && aux.Izquierda != null)
+                {
+                    aux = aux.Izquierda;
+                }
+                else if (aux.Derecha != null && aux.Izquierda == null)
+                {
+                    aux = aux.Derecha;
+                }
+                else
+                {
+                    aux = null;
+                }                
+            }
+
+            if (aux == null)
+            {
+                degenerado = true;
+            }
+
+            return degenerado;
+        }
     }
 }

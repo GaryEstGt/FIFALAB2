@@ -70,7 +70,7 @@ namespace Lab2FIFA.Controllers
                     break;
                 case "Equilibrio":
                     Data<Pais>.instance.orden = 3;
-                    break;
+                    break;                
             }
             if (Data<Pais>.instance.orden == 0)
             {
@@ -391,7 +391,7 @@ namespace Lab2FIFA.Controllers
                 else if(Data<Pais>.instance.tipoDato == 2 || Data<Texto>.instance.tipoDato == 2 || Data<Entero>.instance.tipoDato == 2)
                 {
                     retorno = "IndexTexto";
-                }
+                }                
                 return RedirectToAction(retorno);
             }
             catch
