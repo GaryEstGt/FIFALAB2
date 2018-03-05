@@ -68,6 +68,9 @@ namespace Lab2FIFA.Controllers
                 case "PostOrden":
                     Data<Pais>.instance.orden = 2;
                     break;
+                case "Equilibrio":
+                    Data<Pais>.instance.orden = 3;
+                    break;
             }
             if (Data<Pais>.instance.orden == 0)
             {
@@ -79,10 +82,23 @@ namespace Lab2FIFA.Controllers
                 Data<Pais>.instance.lista.Clear();
                 Data<Pais>.instance.Arbol.MostrarPreOrden(ref Data<Pais>.instance.lista);
             }
-            else
+            else if(Data<Pais>.instance.orden == 2)
             {
                 Data<Pais>.instance.lista.Clear();
                 Data<Pais>.instance.Arbol.MostrarPostOrden(ref Data<Pais>.instance.lista);
+            }
+            else
+            {
+                Data<Pais>.instance.lista.Clear();
+                if (Data<Pais>.instance.Arbol.Equilibrio() == null)
+                {
+                    Data<Pais>.instance.Arbol.MostrarInOrden(ref Data<Pais>.instance.lista);
+                }
+                else
+                {
+                    Data<Pais>.instance.lista.Add(Data<Pais>.instance.Arbol.Equilibrio());
+                }
+
             }
             return View(Data<Pais>.instance.lista);
         }

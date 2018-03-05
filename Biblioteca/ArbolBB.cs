@@ -331,7 +331,15 @@ namespace Biblioteca
         }
         public T Equilibrio()
         {
-            return verEquilibrio(Raiz).info;
+            if (verEquilibrio(Raiz) == null)
+            {
+                return default(T);
+            }
+            else
+            {
+                return verEquilibrio(Raiz).info;
+            }
+           
         }
     }
 }
