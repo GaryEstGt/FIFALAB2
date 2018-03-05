@@ -228,9 +228,6 @@ namespace Lab2FIFA.Controllers
                                 }
 
                             }
-                Pais p = new Pais {Id = 1, Name = "Brasil", Group = "A"};
-                Data<Pais>.instance.Arbol.removeNodo(p, Pais.CompareByName);
-
                         //}
                    // }
                 

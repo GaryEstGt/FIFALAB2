@@ -58,19 +58,17 @@ namespace Biblioteca
             }
         }
 
-        public Nodo<T> findWhere(Delegate delegado, T datos, Nodo<T> raiz)
+        public void findWhere(Delegate delegado, T datos, Nodo<T> raiz, ref Nodo<T> nodo)
         {
-            if (raiz != null)
+            if ((raiz != null)&&(nodo == null))
             {
-                findWhere(delegado, datos, raiz.Izquierda);
+                findWhere(delegado, datos, raiz.Izquierda, ref nodo);
                 if ((int)delegado.DynamicInvoke(raiz.info, datos) == 0)
                 {
-                    return raiz;
+                    nodo = raiz;
                 }                
-                findWhere(delegado, datos, raiz.Derecha);
-            }
-            return null;
-            
+                findWhere(delegado, datos, raiz.Derecha, ref nodo);
+            }                        
         }
 
         public List<T> BuscarHojas()
@@ -144,7 +142,8 @@ namespace Biblioteca
         
 public void removeNodo(T dato, Delegate delegado)
         {
-            Nodo<T> nodo = findWhere(delegado, dato, Raiz);
+            Nodo<T> nodo = null;
+            findWhere(delegado, dato, Raiz, ref nodo);
             /* Creamos variables para saber si tiene hijos izquierdo y derecho */
             bool tieneNodoDerecha = nodo.getDerecha() != null ? true : false;
             bool tieneNodoIzquierda = nodo.getIzquierda() != null ? true : false;
@@ -238,13 +237,22 @@ public void removeNodo(T dato, Delegate delegado)
 
             if (aux.Padre != nodo)
             {
-                aux.Padre.Derecha = aux.Izquierda;
+                aux.Padre.Derecha = aux.Izquierda;                
+            }
+            else
+            {
+                aux.Padre.Izquierda = aux.Izquierda;                
             }
 
+            if (aux.Izquierda != null)
+                aux.Izquierda.Padre = aux.Padre;
+
             aux.Derecha = nodo.Derecha;
-            nodo.Derecha.Padre = aux;
+            if (nodo.Derecha != null)            
+                nodo.Derecha.Padre = aux;                       
             aux.Izquierda = nodo.Izquierda;
-            nodo.Izquierda.Padre = aux;
+            if (nodo.Izquierda != null)
+                nodo.Izquierda.Padre = aux;
 
             if (nodo != Raiz)
             {
