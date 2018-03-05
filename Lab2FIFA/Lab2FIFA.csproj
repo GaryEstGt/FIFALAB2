@@ -280,6 +280,9 @@
     <Content Include="Views\Pais\Delete.cshtml" />
     <Content Include="Views\Pais\DeleteEntero.cshtml" />
     <Content Include="Views\Pais\DeleteTexto.cshtml" />
+    <Content Include="Views\Pais\VerValidacion.cshtml" />
+    <Content Include="Views\Pais\VerValidacionEntero.cshtml" />
+    <Content Include="Views\Pais\VerValidacionTexto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,19 @@ namespace Lab2FIFA.Controllers
 {
     public class PaisController : Controller
     {
+        public ActionResult VerValidacion()
+        {
+            return View();
+        }
+        public ActionResult VerValidacionEntero()
+        {
+            return View();
+        }
+        public ActionResult VerValidacionTexto()
+        {
+            return View();
+        }
+
         public ActionResult ElegirTipodeDato()
         {
             return View();
@@ -244,7 +257,8 @@ namespace Lab2FIFA.Controllers
         // GET: Pais/Delete/5
         public ActionResult Delete(int id, string name, string group)
         {
-            return View();
+            Pais p = new Pais { Id = id, Name = name, Group = group};
+            return View(p);
         }
 
         // POST: Pais/Delete/5
@@ -271,7 +285,8 @@ namespace Lab2FIFA.Controllers
         }
         public ActionResult DeleteEntero(int num)
         {
-            return View();
+            Entero ent = new Entero { valor = num};
+            return View(ent);
         }
 
         // POST: Pais/Delete/5
@@ -285,7 +300,7 @@ namespace Lab2FIFA.Controllers
                 {                    
                     valor = num
                 };
-
+                
                 Data<Entero>.instance.Arbol.removeNodo(entero, Entero.CompareByValor);
                 return RedirectToAction("IndexEntero");
             }
@@ -296,7 +311,8 @@ namespace Lab2FIFA.Controllers
         }
         public ActionResult DeleteTexto(int id, string Texto)
         {
-            return View();
+            Texto t = new Texto { texto = Texto };
+            return View(t);
         }
 
         // POST: Pais/Delete/5

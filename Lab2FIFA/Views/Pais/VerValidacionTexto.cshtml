@@ -1,0 +1,26 @@
+﻿@model Lab2FIFA.Models.Texto
+
+@{
+    ViewBag.Title = "VerValidacionTexto";
+}
+
+<h2>VerValidacionTexto</h2>
+
+<div>
+    <h4>Texto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.texto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
