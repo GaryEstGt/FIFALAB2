@@ -93,10 +93,10 @@ namespace Biblioteca
             }
         }
 
-        public int VerAltura()
+        public int VerAltura(Nodo<T> Nodo)
         {
             altura = 0;
-            VerAltura(Raiz, altura);
+            VerAltura(Nodo, altura);
             return altura;
         }
 
@@ -263,6 +263,24 @@ public void removeNodo(T dato, Delegate delegado)
             }
                 
             
+        }
+        public Nodo<T> verEquilibrio(Nodo<T> nodo)
+        {
+            if((VerAltura(nodo.Derecha)-VerAltura(nodo.Izquierda))>1 || (VerAltura(nodo.Derecha) - VerAltura(nodo.Izquierda)) < -1)
+                { 
+                return nodo;
+            }
+            else
+            {
+                verEquilibrio(nodo.Izquierda);
+                verEquilibrio(nodo.Derecha);
+            }
+
+            return null;
+        }
+        public T Equilibrio()
+        {
+            return verEquilibrio(Raiz).info;
         }
     }
 }
